@@ -1,1 +1,35 @@
-# Keeps data, weights, secrets and caches out of Git (Phase 0 stub)
+# Data, models and run outputs: never in Git (DVC / MLflow handle these)
+data/
+artifacts/
+runs/
+mlruns/
+*.pt
+*.pth
+*.onnx
+*.engine
+
+# Secrets and local config
+.env
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+build/
+dist/
+
+# Tool caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Notebooks, editors, OS
+.ipynb_checkpoints/
+.vscode/
+.idea/
+.DS_Store
+node_modules/

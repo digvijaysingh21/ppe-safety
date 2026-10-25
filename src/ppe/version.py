@@ -1,4 +1,3 @@
-"""Single version string.
+"""Single source of truth for the package version."""
 
-Phase 0 stub: created by scripts/repo_manifest.py scaffold.
-"""
+__version__ = "0.1.0"

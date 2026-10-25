@@ -17,6 +17,7 @@ Usage
 Phase kickoff ritual: `phase N` (read it) -> `scaffold N` (create stubs) ->
 commit the stubs -> only then start filling files in, one at a time.
 """
+# ruff: noqa: E501  (this script emits long Markdown lines; wrapping would hurt readability)
 
 from __future__ import annotations
 
@@ -51,414 +52,492 @@ def add(phase: int, items: list[tuple[str, str]]) -> None:
 # --------------------------------------------------------------------------- #
 # PHASE 0 - Foundations and framing
 # --------------------------------------------------------------------------- #
-add(0, [
-    ("README.md", "Front door: what, why, how, architecture, results"),
-    ("LICENSE", "Open-source license"),
-    ("CONTRIBUTING.md", "Setup, branching, commits and PR flow"),
-    ("CHANGELOG.md", "Release notes (Keep a Changelog format)"),
-    ("Makefile", "One-command shortcuts: setup, lint, test, train, serve"),
-    ("pyproject.toml", "Package metadata, dependencies, ruff/mypy/pytest config"),
-    (".gitignore", "Keeps data, weights, secrets and caches out of Git"),
-    (".dockerignore", "Keeps the Docker build context small"),
-    (".editorconfig", "Consistent whitespace across editors"),
-    (".env.example", "Documented environment variables (never real secrets)"),
-    (".pre-commit-config.yaml", "ruff, mypy, detect-secrets, nbstripout on every commit"),
-    (".github/CODEOWNERS", "Who must review which paths"),
-    (".github/pull_request_template.md", "PR checklist including ML-specific checks"),
-    (".github/ISSUE_TEMPLATE/bug_report.md", "Structured bug reports"),
-    (".github/ISSUE_TEMPLATE/feature_request.md", "Structured feature requests"),
-    (".github/workflows/ci.yml", "PR pipeline v1: lint, type-check, unit tests"),
-    ("docs/PRD.md", "Product requirements: users, scope, cost of errors, metrics"),
-    ("docs/DESIGN.md", "System design: requirements, scale, failure modes, trade-offs"),
-    ("docs/ARCHITECTURE.md", "Component, runtime, ML-lifecycle and deployment diagrams"),
-    ("docs/FOLDER_STRUCTURE.md", "Generated: complete annotated tree"),
-    ("docs/ROADMAP.md", "Phases, learning goals, exit gates"),
-    ("docs/PHASE_MANIFEST.md", "Generated: every file and folder, per phase"),
-    ("docs/GIT_STRATEGY.md", "Branching, commits, tags, releases, data/model versioning"),
-    ("docs/CICD.md", "CI, CD and continuous-training pipelines"),
-    ("docs/ML_PIPELINE.md", "Data-to-model pipeline stages, contracts and gates"),
-    ("docs/DEPLOYMENT.md", "Docker, Kubernetes, cloud, rollout and rollback"),
-    ("docs/OBSERVABILITY.md", "Metrics, logs, traces, drift, dashboards, alerts"),
-    ("docs/ENGINEERING_STANDARDS.md", "Clean-code, performance and testing rules"),
-    ("docs/EXPERIMENTS.md", "Table of every training run and what changed"),
-    ("docs/WHAT_FAILED.md", "Honest log of what did not work and why"),
-    ("docs/DECISIONS.md", "Index of architecture decisions"),
-    ("docs/adr/0001-record-architecture-decisions.md", "Why we keep ADRs"),
-    ("docs/assets/", "Diagrams, screenshots, demo media"),
-    ("scripts/repo_manifest.py", "This file: layout source of truth and scaffolder"),
-    ("scripts/setup_dev.sh", "Create venv, install deps, install pre-commit hooks"),
-    ("notebooks/00_env_check.ipynb", "Verify Colab/Kaggle GPU, CUDA and library versions"),
-    ("docker/Dockerfile.base", "Slim Python base image shared by services"),
-    ("src/ppe/__init__.py", "Package root"),
-    ("src/ppe/py.typed", "Marks the package as typed"),
-    ("src/ppe/version.py", "Single version string"),
-    ("src/ppe/core/__init__.py", "Core package"),
-    ("src/ppe/core/config.py", "Typed settings (pydantic-settings), YAML + env loading"),
-    ("src/ppe/core/logging.py", "Structured JSON logging (structlog)"),
-    ("src/ppe/core/types.py", "Shared dataclasses: Frame, Detection, Track, ViolationEvent"),
-    ("src/ppe/core/exceptions.py", "Domain-specific exception hierarchy"),
-    ("tests/__init__.py", "Test package"),
-    ("tests/conftest.py", "Shared fixtures"),
-    ("tests/unit/test_config.py", "Config loading and validation tests"),
-    ("tests/unit/test_types.py", "Core dataclass tests"),
-])
+add(
+    0,
+    [
+        ("README.md", "Front door: what, why, how, architecture, results"),
+        ("LICENSE", "Open-source license"),
+        ("CONTRIBUTING.md", "Setup, branching, commits and PR flow"),
+        ("CHANGELOG.md", "Release notes (Keep a Changelog format)"),
+        ("Makefile", "One-command shortcuts: setup, lint, test, train, serve"),
+        ("pyproject.toml", "Package metadata, dependencies, ruff/mypy/pytest config"),
+        (".gitignore", "Keeps data, weights, secrets and caches out of Git"),
+        (".dockerignore", "Keeps the Docker build context small"),
+        (".editorconfig", "Consistent whitespace across editors"),
+        (".env.example", "Documented environment variables (never real secrets)"),
+        (".pre-commit-config.yaml", "ruff, mypy, detect-secrets, nbstripout on every commit"),
+        (".github/CODEOWNERS", "Who must review which paths"),
+        (".github/pull_request_template.md", "PR checklist including ML-specific checks"),
+        (".github/ISSUE_TEMPLATE/bug_report.md", "Structured bug reports"),
+        (".github/ISSUE_TEMPLATE/feature_request.md", "Structured feature requests"),
+        (".github/workflows/ci.yml", "PR pipeline v1: lint, type-check, unit tests"),
+        ("docs/PRD.md", "Product requirements: users, scope, cost of errors, metrics"),
+        ("docs/DESIGN.md", "System design: requirements, scale, failure modes, trade-offs"),
+        ("docs/ARCHITECTURE.md", "Component, runtime, ML-lifecycle and deployment diagrams"),
+        ("docs/FOLDER_STRUCTURE.md", "Generated: complete annotated tree"),
+        ("docs/ROADMAP.md", "Phases, learning goals, exit gates"),
+        ("docs/PHASE_MANIFEST.md", "Generated: every file and folder, per phase"),
+        ("docs/GIT_STRATEGY.md", "Branching, commits, tags, releases, data/model versioning"),
+        ("docs/CICD.md", "CI, CD and continuous-training pipelines"),
+        ("docs/ML_PIPELINE.md", "Data-to-model pipeline stages, contracts and gates"),
+        ("docs/DEPLOYMENT.md", "Docker, Kubernetes, cloud, rollout and rollback"),
+        ("docs/OBSERVABILITY.md", "Metrics, logs, traces, drift, dashboards, alerts"),
+        ("docs/ENGINEERING_STANDARDS.md", "Clean-code, performance and testing rules"),
+        ("docs/EXPERIMENTS.md", "Table of every training run and what changed"),
+        ("docs/WHAT_FAILED.md", "Honest log of what did not work and why"),
+        ("docs/DECISIONS.md", "Index of architecture decisions"),
+        ("docs/adr/0001-record-architecture-decisions.md", "Why we keep ADRs"),
+        ("docs/assets/", "Diagrams, screenshots, demo media"),
+        ("scripts/repo_manifest.py", "This file: layout source of truth and scaffolder"),
+        ("scripts/setup_dev.sh", "Create venv, install deps, install pre-commit hooks"),
+        ("notebooks/00_env_check.ipynb", "Verify Colab/Kaggle GPU, CUDA and library versions"),
+        ("docker/Dockerfile.base", "Slim Python base image shared by services"),
+        ("src/ppe/__init__.py", "Package root"),
+        ("src/ppe/py.typed", "Marks the package as typed"),
+        ("src/ppe/version.py", "Single version string"),
+        ("src/ppe/core/__init__.py", "Core package"),
+        ("src/ppe/core/config.py", "Typed settings (pydantic-settings), YAML + env loading"),
+        ("src/ppe/core/logging.py", "Structured JSON logging (structlog)"),
+        ("src/ppe/core/types.py", "Shared dataclasses: Frame, Detection, Track, ViolationEvent"),
+        ("src/ppe/core/exceptions.py", "Domain-specific exception hierarchy"),
+        ("tests/__init__.py", "Test package"),
+        ("tests/conftest.py", "Shared fixtures"),
+        ("tests/unit/test_config.py", "Config loading and validation tests"),
+        ("tests/unit/test_types.py", "Core dataclass tests"),
+    ],
+)
 
 # --------------------------------------------------------------------------- #
 # PHASE 1 - Data engineering and annotation
 # --------------------------------------------------------------------------- #
-add(1, [
-    ("params.yaml", "DVC-tracked parameters (split seeds, thresholds, dataset version)"),
-    ("dvc.yaml", "Data pipeline DAG: download -> convert -> validate -> split -> build"),
-    (".dvcignore", "Files DVC should skip"),
-    (".dvc/config", "DVC remote storage configuration"),
-    ("configs/data/dataset.yaml", "Sources, paths, license flags per dataset"),
-    ("configs/data/classes.yaml", "Unified class map across all datasets"),
-    ("configs/data/splits.yaml", "Split policy: by camera/site/video, ratios, seed"),
-    ("configs/data/validation.yaml", "Data-contract rules (bbox ranges, class ids, dedup)"),
-    ("annotation/README.md", "How to run CVAT / Label Studio and import/export"),
-    ("annotation/cvat_labels.json", "Label schema loaded into CVAT"),
-    ("docs/data/LICENSES.md", "License and attribution of every dataset"),
-    ("docs/data/LABELING_GUIDELINE.md", "What counts as helmet/vest/person, edge cases, examples"),
-    ("docs/data/DATASET_CHANGELOG.md", "What changed between dataset versions and why"),
-    ("docs/data/datasheet.md", "Datasheet for the dataset (composition, biases, limits)"),
-    ("docs/theory/p1_data_and_annotation.md", "Teaching notes: data-centric AI, labels, leakage"),
-    ("src/ppe/data/__init__.py", "Data package"),
-    ("src/ppe/data/download.py", "Fetch public datasets, verify checksums"),
-    ("src/ppe/data/convert.py", "VOC/COCO/Roboflow formats -> YOLO format"),
-    ("src/ppe/data/unify_classes.py", "Map every source's labels onto the unified classes"),
-    ("src/ppe/data/prelabel.py", "Auto-label with Grounding DINO / SAM for human correction"),
-    ("src/ppe/data/cvat_io.py", "Import/export annotations to and from CVAT"),
-    ("src/ppe/data/validate.py", "Pandera schemas and data-contract checks"),
-    ("src/ppe/data/split.py", "Group-aware splits by camera/site/video"),
-    ("src/ppe/data/leakage_audit.py", "Near-duplicate and group-overlap detection across splits"),
-    ("src/ppe/data/label_noise.py", "cleanlab-based label-error finder"),
-    ("src/ppe/data/agreement.py", "Inter-annotator agreement (IoU-matched kappa)"),
-    ("src/ppe/data/stats.py", "Class balance, box-size and scene statistics"),
-    ("scripts/download_data.sh", "One-command dataset download"),
-    ("notebooks/01_eda.ipynb", "Exploratory data analysis"),
-    ("tests/data/test_schema.py", "Schema contract tests"),
-    ("tests/data/test_labels.py", "Label sanity tests (bbox bounds, class ids)"),
-    ("tests/unit/test_split_no_leakage.py", "Proves no group appears in two splits"),
-    ("tests/fixtures/", "Tiny sample dataset for fast tests"),
-    (".github/workflows/data-ci.yml", "Validates data changes on pull requests"),
-    ("data/raw/", "Untouched downloads (DVC-tracked, not in Git)"),
-    ("data/interim/", "Converted and unified labels (DVC-tracked)"),
-    ("data/processed/", "Final train/val/test in YOLO format (DVC-tracked)"),
-    ("data/external/", "Third-party reference data (DVC-tracked)"),
-    ("data/golden/", "Frozen, hand-verified test set from your own footage"),
-])
+add(
+    1,
+    [
+        ("params.yaml", "DVC-tracked parameters (split seeds, thresholds, dataset version)"),
+        ("dvc.yaml", "Data pipeline DAG: download -> convert -> validate -> split -> build"),
+        (".dvcignore", "Files DVC should skip"),
+        (".dvc/config", "DVC remote storage configuration"),
+        ("configs/data/dataset.yaml", "Sources, paths, license flags per dataset"),
+        ("configs/data/classes.yaml", "Unified class map across all datasets"),
+        ("configs/data/splits.yaml", "Split policy: by camera/site/video, ratios, seed"),
+        ("configs/data/validation.yaml", "Data-contract rules (bbox ranges, class ids, dedup)"),
+        ("annotation/README.md", "How to run CVAT / Label Studio and import/export"),
+        ("annotation/cvat_labels.json", "Label schema loaded into CVAT"),
+        ("docs/data/LICENSES.md", "License and attribution of every dataset"),
+        (
+            "docs/data/LABELING_GUIDELINE.md",
+            "What counts as helmet/vest/person, edge cases, examples",
+        ),
+        ("docs/data/DATASET_CHANGELOG.md", "What changed between dataset versions and why"),
+        ("docs/data/datasheet.md", "Datasheet for the dataset (composition, biases, limits)"),
+        (
+            "docs/theory/p1_data_and_annotation.md",
+            "Teaching notes: data-centric AI, labels, leakage",
+        ),
+        ("src/ppe/data/__init__.py", "Data package"),
+        ("src/ppe/data/download.py", "Fetch public datasets, verify checksums"),
+        ("src/ppe/data/convert.py", "VOC/COCO/Roboflow formats -> YOLO format"),
+        ("src/ppe/data/unify_classes.py", "Map every source's labels onto the unified classes"),
+        ("src/ppe/data/prelabel.py", "Auto-label with Grounding DINO / SAM for human correction"),
+        ("src/ppe/data/cvat_io.py", "Import/export annotations to and from CVAT"),
+        ("src/ppe/data/validate.py", "Pandera schemas and data-contract checks"),
+        ("src/ppe/data/split.py", "Group-aware splits by camera/site/video"),
+        (
+            "src/ppe/data/leakage_audit.py",
+            "Near-duplicate and group-overlap detection across splits",
+        ),
+        ("src/ppe/data/label_noise.py", "cleanlab-based label-error finder"),
+        ("src/ppe/data/agreement.py", "Inter-annotator agreement (IoU-matched kappa)"),
+        ("src/ppe/data/stats.py", "Class balance, box-size and scene statistics"),
+        ("scripts/download_data.sh", "One-command dataset download"),
+        ("notebooks/01_eda.ipynb", "Exploratory data analysis"),
+        ("tests/data/test_schema.py", "Schema contract tests"),
+        ("tests/data/test_labels.py", "Label sanity tests (bbox bounds, class ids)"),
+        ("tests/unit/test_split_no_leakage.py", "Proves no group appears in two splits"),
+        ("tests/fixtures/", "Tiny sample dataset for fast tests"),
+        (".github/workflows/data-ci.yml", "Validates data changes on pull requests"),
+        ("data/raw/", "Untouched downloads (DVC-tracked, not in Git)"),
+        ("data/interim/", "Converted and unified labels (DVC-tracked)"),
+        ("data/processed/", "Final train/val/test in YOLO format (DVC-tracked)"),
+        ("data/external/", "Third-party reference data (DVC-tracked)"),
+        ("data/golden/", "Frozen, hand-verified test set from your own footage"),
+    ],
+)
 
 # --------------------------------------------------------------------------- #
 # PHASE 2 - Baseline, evaluation harness, experiment tracking
 # --------------------------------------------------------------------------- #
-add(2, [
-    ("docker/Dockerfile.train", "CUDA training image, same deps as Colab/Kaggle"),
-    ("configs/train/baseline_yolo.yaml", "Baseline YOLO training run"),
-    ("configs/eval/eval.yaml", "Evaluation settings: IoU thresholds, conf, NMS"),
-    ("src/ppe/core/seed.py", "Fix all random seeds for reproducibility"),
-    ("src/ppe/evaluation/__init__.py", "Evaluation package"),
-    ("src/ppe/evaluation/iou.py", "IoU, GIoU, DIoU, CIoU written from scratch"),
-    ("src/ppe/evaluation/nms.py", "NMS and Soft-NMS written from scratch"),
-    ("src/ppe/evaluation/metrics.py", "Precision/recall, AP, mAP computation"),
-    ("src/ppe/evaluation/evaluate.py", "Run a model on a split and produce metrics"),
-    ("src/ppe/evaluation/report.py", "Metric tables, PR curves, confusion matrix"),
-    ("src/ppe/models/__init__.py", "Models package"),
-    ("src/ppe/models/detector.py", "Detector interface (Protocol) every model implements"),
-    ("src/ppe/models/yolo_detector.py", "YOLO implementation of the interface"),
-    ("src/ppe/training/__init__.py", "Training package"),
-    ("src/ppe/training/train.py", "Config-driven training entry point"),
-    ("src/ppe/training/callbacks.py", "Logging and checkpoint callbacks"),
-    ("src/ppe/training/tracking.py", "MLflow helpers: params, metrics, artifacts"),
-    ("src/ppe/training/trainers/__init__.py", "Trainer implementations"),
-    ("src/ppe/training/trainers/yolo.py", "YOLO trainer wrapper"),
-    ("notebooks/02_baseline_colab.ipynb", "Run baseline on Colab/Kaggle"),
-    ("docs/theory/p2_detection_fundamentals.md", "Anchors, IoU, NMS, FPN/PAN, focal loss, mAP"),
-    ("docs/model_card.md", "Model card, started at baseline and updated every phase"),
-    ("tests/unit/test_iou.py", "IoU variants vs known values"),
-    ("tests/unit/test_nms.py", "NMS and Soft-NMS behavior tests"),
-    ("tests/unit/test_metrics.py", "AP/mAP against reference implementation"),
-    ("artifacts/", "Model weights and run outputs (gitignored, MLflow/DVC-tracked)"),
-])
+add(
+    2,
+    [
+        ("docker/Dockerfile.train", "CUDA training image, same deps as Colab/Kaggle"),
+        ("configs/train/baseline_yolo.yaml", "Baseline YOLO training run"),
+        ("configs/eval/eval.yaml", "Evaluation settings: IoU thresholds, conf, NMS"),
+        ("src/ppe/core/seed.py", "Fix all random seeds for reproducibility"),
+        ("src/ppe/evaluation/__init__.py", "Evaluation package"),
+        ("src/ppe/evaluation/iou.py", "IoU, GIoU, DIoU, CIoU written from scratch"),
+        ("src/ppe/evaluation/nms.py", "NMS and Soft-NMS written from scratch"),
+        ("src/ppe/evaluation/metrics.py", "Precision/recall, AP, mAP computation"),
+        ("src/ppe/evaluation/evaluate.py", "Run a model on a split and produce metrics"),
+        ("src/ppe/evaluation/report.py", "Metric tables, PR curves, confusion matrix"),
+        ("src/ppe/models/__init__.py", "Models package"),
+        ("src/ppe/models/detector.py", "Detector interface (Protocol) every model implements"),
+        ("src/ppe/models/yolo_detector.py", "YOLO implementation of the interface"),
+        ("src/ppe/training/__init__.py", "Training package"),
+        ("src/ppe/training/train.py", "Config-driven training entry point"),
+        ("src/ppe/training/callbacks.py", "Logging and checkpoint callbacks"),
+        ("src/ppe/training/tracking.py", "MLflow helpers: params, metrics, artifacts"),
+        ("src/ppe/training/trainers/__init__.py", "Trainer implementations"),
+        ("src/ppe/training/trainers/yolo.py", "YOLO trainer wrapper"),
+        ("notebooks/02_baseline_colab.ipynb", "Run baseline on Colab/Kaggle"),
+        ("docs/theory/p2_detection_fundamentals.md", "Anchors, IoU, NMS, FPN/PAN, focal loss, mAP"),
+        ("docs/model_card.md", "Model card, started at baseline and updated every phase"),
+        ("tests/unit/test_iou.py", "IoU variants vs known values"),
+        ("tests/unit/test_nms.py", "NMS and Soft-NMS behavior tests"),
+        ("tests/unit/test_metrics.py", "AP/mAP against reference implementation"),
+        ("artifacts/", "Model weights and run outputs (gitignored, MLflow/DVC-tracked)"),
+    ],
+)
 
 # --------------------------------------------------------------------------- #
 # PHASE 3 - Model improvement and error analysis
 # --------------------------------------------------------------------------- #
-add(3, [
-    ("configs/train/yolo11s_p2.yaml", "Small-object variant: higher resolution and P2 head"),
-    ("configs/train/rtdetr.yaml", "RT-DETR transformer baseline"),
-    ("configs/train/frcnn.yaml", "Faster R-CNN two-stage baseline"),
-    ("configs/train/augmentation.yaml", "Augmentation recipes for ablations"),
-    ("configs/train/optuna_space.yaml", "Hyperparameter search space"),
-    ("configs/train/distill.yaml", "Teacher-student distillation settings"),
-    ("configs/eval/slices.yaml", "Slice definitions: size, lighting, occlusion, camera"),
-    ("src/ppe/data/augment.py", "Augmentation pipeline (mosaic, mixup, copy-paste, weather)"),
-    ("src/ppe/data/torch_dataset.py", "PyTorch Dataset for non-YOLO trainers"),
-    ("src/ppe/data/hard_negatives.py", "Hard-negative mining"),
-    ("src/ppe/data/synthetic.py", "Synthetic data experiment (copy-paste, generated scenes)"),
-    ("src/ppe/models/sahi_detector.py", "Sliced inference wrapper for small objects"),
-    ("src/ppe/training/trainers/rtdetr.py", "RT-DETR trainer"),
-    ("src/ppe/training/trainers/frcnn.py", "Faster R-CNN trainer"),
-    ("src/ppe/training/tune.py", "Optuna hyperparameter search"),
-    ("src/ppe/training/distill.py", "Distill a larger model into a smaller one"),
-    ("src/ppe/evaluation/slices.py", "Per-slice metrics"),
-    ("src/ppe/evaluation/error_analysis.py", "Categorize failures: miss, false alarm, localization"),
-    ("src/ppe/evaluation/calibration.py", "Confidence calibration and reliability diagrams"),
-    ("notebooks/03_error_analysis.ipynb", "Look at failures, decide what to fix"),
-    ("docs/theory/p3_improving_detectors.md", "When to change data, model, resolution or loss"),
-    ("docs/adr/0002-detector-family.md", "Evidence-based choice of detector family"),
-    ("tests/unit/test_augment.py", "Augmentations keep boxes valid"),
-])
+add(
+    3,
+    [
+        ("configs/train/yolo11s_p2.yaml", "Small-object variant: higher resolution and P2 head"),
+        ("configs/train/rtdetr.yaml", "RT-DETR transformer baseline"),
+        ("configs/train/frcnn.yaml", "Faster R-CNN two-stage baseline"),
+        ("configs/train/augmentation.yaml", "Augmentation recipes for ablations"),
+        ("configs/train/optuna_space.yaml", "Hyperparameter search space"),
+        ("configs/train/distill.yaml", "Teacher-student distillation settings"),
+        ("configs/eval/slices.yaml", "Slice definitions: size, lighting, occlusion, camera"),
+        ("src/ppe/data/augment.py", "Augmentation pipeline (mosaic, mixup, copy-paste, weather)"),
+        ("src/ppe/data/torch_dataset.py", "PyTorch Dataset for non-YOLO trainers"),
+        ("src/ppe/data/hard_negatives.py", "Hard-negative mining"),
+        ("src/ppe/data/synthetic.py", "Synthetic data experiment (copy-paste, generated scenes)"),
+        ("src/ppe/models/sahi_detector.py", "Sliced inference wrapper for small objects"),
+        ("src/ppe/training/trainers/rtdetr.py", "RT-DETR trainer"),
+        ("src/ppe/training/trainers/frcnn.py", "Faster R-CNN trainer"),
+        ("src/ppe/training/tune.py", "Optuna hyperparameter search"),
+        ("src/ppe/training/distill.py", "Distill a larger model into a smaller one"),
+        ("src/ppe/evaluation/slices.py", "Per-slice metrics"),
+        (
+            "src/ppe/evaluation/error_analysis.py",
+            "Categorize failures: miss, false alarm, localization",
+        ),
+        ("src/ppe/evaluation/calibration.py", "Confidence calibration and reliability diagrams"),
+        ("notebooks/03_error_analysis.ipynb", "Look at failures, decide what to fix"),
+        ("docs/theory/p3_improving_detectors.md", "When to change data, model, resolution or loss"),
+        ("docs/adr/0002-detector-family.md", "Evidence-based choice of detector family"),
+        ("tests/unit/test_augment.py", "Augmentations keep boxes valid"),
+    ],
+)
 
 # --------------------------------------------------------------------------- #
 # PHASE 4 - Video intelligence: tracking, rules, privacy
 # --------------------------------------------------------------------------- #
-add(4, [
-    ("configs/tracking/bytetrack.yaml", "Tracker thresholds and buffers"),
-    ("configs/rules/zones.example.yaml", "Example restricted-zone polygons per camera"),
-    ("configs/rules/violations.yaml", "Violation definitions: type, duration, cooldown"),
-    ("src/ppe/tracking/__init__.py", "Tracking package"),
-    ("src/ppe/tracking/base.py", "Tracker interface"),
-    ("src/ppe/tracking/kalman.py", "Kalman filter motion model from scratch"),
-    ("src/ppe/tracking/association.py", "IoU cost matrix and Hungarian matching"),
-    ("src/ppe/tracking/bytetrack.py", "ByteTrack implementation"),
-    ("src/ppe/rules/__init__.py", "Rule engine package"),
-    ("src/ppe/rules/zones.py", "Polygons, point-in-polygon, zone membership"),
-    ("src/ppe/rules/ppe_association.py", "Match helmet/vest boxes to person boxes"),
-    ("src/ppe/rules/state_machine.py", "Per-track violation lifecycle with timers"),
-    ("src/ppe/rules/engine.py", "Applies rules to tracked detections each frame"),
-    ("src/ppe/rules/events.py", "ViolationEvent construction and dedup keys"),
-    ("src/ppe/privacy/__init__.py", "Privacy package"),
-    ("src/ppe/privacy/blur.py", "Face detection and blurring before storage"),
-    ("src/ppe/video/__init__.py", "Video package"),
-    ("src/ppe/video/overlay.py", "Draw boxes, tracks, zones on frames"),
-    ("src/ppe/pipeline/__init__.py", "Offline pipeline package"),
-    ("src/ppe/pipeline/runner.py", "detect -> track -> rules on a video file"),
-    ("src/ppe/evaluation/tracking_metrics.py", "MOTA, IDF1, ID switches"),
-    ("src/ppe/evaluation/business_metrics.py", "False alerts per camera per day, missed-violation rate"),
-    ("src/ppe/evaluation/thresholds.py", "Pick thresholds by cost of errors"),
-    ("notebooks/04_rules_demo.ipynb", "Watch the rule engine on sample video"),
-    ("docs/theory/p4_tracking_and_rules.md", "Tracking by detection, why deterministic rules"),
-    ("docs/PRIVACY_AND_COMPLIANCE.md", "Face blur, retention, on-prem vs cloud, worker consent"),
-    ("docs/adr/0003-tracker-choice.md", "ByteTrack vs DeepSORT decision"),
-    ("tests/unit/test_zones.py", "Geometry tests"),
-    ("tests/unit/test_state_machine.py", "Violation lifecycle and timer tests"),
-    ("tests/unit/test_association.py", "PPE-to-person matching tests"),
-    ("tests/unit/test_tracking.py", "Tracker behavior and ID-switch tests"),
-    ("tests/integration/test_pipeline_offline.py", "End-to-end offline pipeline on a sample clip"),
-    ("tests/fixtures/sample_clip.mp4", "Short labeled clip for integration tests"),
-])
+add(
+    4,
+    [
+        ("configs/tracking/bytetrack.yaml", "Tracker thresholds and buffers"),
+        ("configs/rules/zones.example.yaml", "Example restricted-zone polygons per camera"),
+        ("configs/rules/violations.yaml", "Violation definitions: type, duration, cooldown"),
+        ("src/ppe/tracking/__init__.py", "Tracking package"),
+        ("src/ppe/tracking/base.py", "Tracker interface"),
+        ("src/ppe/tracking/kalman.py", "Kalman filter motion model from scratch"),
+        ("src/ppe/tracking/association.py", "IoU cost matrix and Hungarian matching"),
+        ("src/ppe/tracking/bytetrack.py", "ByteTrack implementation"),
+        ("src/ppe/rules/__init__.py", "Rule engine package"),
+        ("src/ppe/rules/zones.py", "Polygons, point-in-polygon, zone membership"),
+        ("src/ppe/rules/ppe_association.py", "Match helmet/vest boxes to person boxes"),
+        ("src/ppe/rules/state_machine.py", "Per-track violation lifecycle with timers"),
+        ("src/ppe/rules/engine.py", "Applies rules to tracked detections each frame"),
+        ("src/ppe/rules/events.py", "ViolationEvent construction and dedup keys"),
+        ("src/ppe/privacy/__init__.py", "Privacy package"),
+        ("src/ppe/privacy/blur.py", "Face detection and blurring before storage"),
+        ("src/ppe/video/__init__.py", "Video package"),
+        ("src/ppe/video/overlay.py", "Draw boxes, tracks, zones on frames"),
+        ("src/ppe/pipeline/__init__.py", "Offline pipeline package"),
+        ("src/ppe/pipeline/runner.py", "detect -> track -> rules on a video file"),
+        ("src/ppe/evaluation/tracking_metrics.py", "MOTA, IDF1, ID switches"),
+        (
+            "src/ppe/evaluation/business_metrics.py",
+            "False alerts per camera per day, missed-violation rate",
+        ),
+        ("src/ppe/evaluation/thresholds.py", "Pick thresholds by cost of errors"),
+        ("notebooks/04_rules_demo.ipynb", "Watch the rule engine on sample video"),
+        ("docs/theory/p4_tracking_and_rules.md", "Tracking by detection, why deterministic rules"),
+        (
+            "docs/PRIVACY_AND_COMPLIANCE.md",
+            "Face blur, retention, on-prem vs cloud, worker consent",
+        ),
+        ("docs/adr/0003-tracker-choice.md", "ByteTrack vs DeepSORT decision"),
+        ("tests/unit/test_zones.py", "Geometry tests"),
+        ("tests/unit/test_state_machine.py", "Violation lifecycle and timer tests"),
+        ("tests/unit/test_association.py", "PPE-to-person matching tests"),
+        ("tests/unit/test_tracking.py", "Tracker behavior and ID-switch tests"),
+        (
+            "tests/integration/test_pipeline_offline.py",
+            "End-to-end offline pipeline on a sample clip",
+        ),
+        ("tests/fixtures/sample_clip.mp4", "Short labeled clip for integration tests"),
+    ],
+)
 
 # --------------------------------------------------------------------------- #
 # PHASE 5 - Optimization and export
 # --------------------------------------------------------------------------- #
-add(5, [
-    ("configs/export/onnx.yaml", "ONNX export settings"),
-    ("configs/export/tensorrt.yaml", "TensorRT engine settings, FP16"),
-    ("configs/export/quantization.yaml", "INT8 calibration settings"),
-    ("src/ppe/export/__init__.py", "Export package"),
-    ("src/ppe/export/to_onnx.py", "PyTorch -> ONNX"),
-    ("src/ppe/export/to_tensorrt.py", "ONNX -> TensorRT engine"),
-    ("src/ppe/export/quantize.py", "FP16 and INT8 post-training quantization"),
-    ("src/ppe/export/parity_check.py", "Prove exported model matches the original"),
-    ("src/ppe/models/onnx_detector.py", "ONNX Runtime detector"),
-    ("src/ppe/models/trt_detector.py", "TensorRT detector"),
-    ("scripts/export_model.py", "CLI for export and parity check"),
-    ("scripts/benchmark_latency.py", "Latency and throughput benchmark: p50/p95/p99, FPS"),
-    ("notebooks/05_tensorrt_colab.ipynb", "TensorRT and INT8 on a Colab GPU"),
-    ("docs/BENCHMARKS.md", "Accuracy-vs-latency table per format and hardware"),
-    ("docs/theory/p5_optimization_and_quantization.md", "FP16, INT8, PTQ vs QAT, batching"),
-    ("tests/model/test_export_parity.py", "ONNX output matches PyTorch within tolerance"),
-])
+add(
+    5,
+    [
+        ("configs/export/onnx.yaml", "ONNX export settings"),
+        ("configs/export/tensorrt.yaml", "TensorRT engine settings, FP16"),
+        ("configs/export/quantization.yaml", "INT8 calibration settings"),
+        ("src/ppe/export/__init__.py", "Export package"),
+        ("src/ppe/export/to_onnx.py", "PyTorch -> ONNX"),
+        ("src/ppe/export/to_tensorrt.py", "ONNX -> TensorRT engine"),
+        ("src/ppe/export/quantize.py", "FP16 and INT8 post-training quantization"),
+        ("src/ppe/export/parity_check.py", "Prove exported model matches the original"),
+        ("src/ppe/models/onnx_detector.py", "ONNX Runtime detector"),
+        ("src/ppe/models/trt_detector.py", "TensorRT detector"),
+        ("scripts/export_model.py", "CLI for export and parity check"),
+        ("scripts/benchmark_latency.py", "Latency and throughput benchmark: p50/p95/p99, FPS"),
+        ("notebooks/05_tensorrt_colab.ipynb", "TensorRT and INT8 on a Colab GPU"),
+        ("docs/BENCHMARKS.md", "Accuracy-vs-latency table per format and hardware"),
+        ("docs/theory/p5_optimization_and_quantization.md", "FP16, INT8, PTQ vs QAT, batching"),
+        ("tests/model/test_export_parity.py", "ONNX output matches PyTorch within tolerance"),
+    ],
+)
 
 # --------------------------------------------------------------------------- #
 # PHASE 6 - Serving, services, product surface
 # --------------------------------------------------------------------------- #
-add(6, [
-    ("configs/serving/inference.yaml", "Model alias, batch size, timeouts"),
-    ("configs/serving/ingest.yaml", "Camera sources, FPS sampling, reconnect policy"),
-    ("configs/serving/alerts.yaml", "Cooldowns, channels, rate limits"),
-    ("configs/env/dev.yaml", "Dev environment settings"),
-    ("configs/env/staging.yaml", "Staging environment settings"),
-    ("configs/env/prod.yaml", "Production environment settings"),
-    ("src/ppe/video/capture.py", "RTSP/file reader with reconnect and backoff"),
-    ("src/ppe/video/frame_sampler.py", "Frame skipping and timestamping"),
-    ("src/ppe/video/clip_writer.py", "Evidence clip and snapshot writer"),
-    ("src/ppe/privacy/retention.py", "Retention job: delete expired clips and rows"),
-    ("src/ppe/models/registry.py", "Load model by MLflow alias and version"),
-    ("src/ppe/models/triton_client.py", "Optional Triton Inference Server client"),
-    ("src/ppe/messaging/__init__.py", "Messaging package"),
-    ("src/ppe/messaging/streams.py", "Redis Streams producer/consumer helpers"),
-    ("src/ppe/messaging/schemas.py", "Message schemas shared by services"),
-    ("services/api/Dockerfile", "API image"),
-    ("services/api/app/__init__.py", "API package"),
-    ("services/api/app/main.py", "FastAPI app factory and middleware"),
-    ("services/api/app/deps.py", "Dependency injection"),
-    ("services/api/app/auth.py", "API-key / JWT auth"),
-    ("services/api/app/schemas.py", "Request/response models"),
-    ("services/api/app/db/__init__.py", "DB package"),
-    ("services/api/app/db/models.py", "SQLAlchemy models: cameras, zones, events, feedback"),
-    ("services/api/app/db/session.py", "Async session management"),
-    ("services/api/app/routers/__init__.py", "Routers package"),
-    ("services/api/app/routers/cameras.py", "Camera CRUD"),
-    ("services/api/app/routers/zones.py", "Zone CRUD"),
-    ("services/api/app/routers/events.py", "Violation events query and acknowledge"),
-    ("services/api/app/routers/feedback.py", "Reviewer verdicts (true/false alert)"),
-    ("services/api/app/routers/models.py", "Active model info"),
-    ("services/api/app/routers/health.py", "Liveness and readiness probes"),
-    ("services/api/alembic.ini", "Migration config"),
-    ("services/api/alembic/env.py", "Migration environment"),
-    ("services/api/alembic/versions/0001_init.py", "Initial schema"),
-    ("services/stream_worker/Dockerfile", "Stream worker image"),
-    ("services/stream_worker/main.py", "Per-camera process entry"),
-    ("services/stream_worker/pipeline.py", "decode -> infer -> track -> rules -> publish"),
-    ("services/inference/Dockerfile", "GPU inference image"),
-    ("services/inference/main.py", "Inference API (gRPC/HTTP)"),
-    ("services/inference/batcher.py", "Dynamic micro-batching across cameras"),
-    ("services/inference/schemas.py", "Inference request/response models"),
-    ("services/alert_worker/Dockerfile", "Alert worker image"),
-    ("services/alert_worker/worker.py", "Consume events, dedup, persist, notify"),
-    ("services/alert_worker/dedup.py", "Cooldown and duplicate suppression"),
-    ("services/alert_worker/notifiers/__init__.py", "Notifier package"),
-    ("services/alert_worker/notifiers/base.py", "Notifier interface"),
-    ("services/alert_worker/notifiers/slack.py", "Slack notifier"),
-    ("services/alert_worker/notifiers/webhook.py", "Generic webhook notifier"),
-    ("services/alert_worker/notifiers/email.py", "Email notifier"),
-    ("services/dashboard/Dockerfile", "Dashboard image"),
-    ("services/dashboard/package.json", "Next.js dependencies"),
-    ("services/dashboard/next.config.js", "Next.js config"),
-    ("services/dashboard/src/app/page.tsx", "Overview: live status and KPIs"),
-    ("services/dashboard/src/app/events/page.tsx", "Violation event list and detail"),
-    ("services/dashboard/src/app/cameras/page.tsx", "Camera and zone management"),
-    ("services/dashboard/src/app/review/page.tsx", "Human review queue (feeds active learning)"),
-    ("services/dashboard/src/lib/api.ts", "Typed API client"),
-    ("docker/docker-compose.yml", "Core stack: api, workers, inference, redis, postgres, minio"),
-    ("docker/docker-compose.dev.yml", "Dev overrides: hot reload, mounted code"),
-    ("docker/mediamtx.yml", "Local RTSP test server config"),
-    ("scripts/replay_video.py", "Loop a video file as a fake RTSP camera"),
-    ("scripts/seed_demo_data.py", "Seed cameras, zones and sample events"),
-    ("docs/theory/p6_serving_systems.md", "Batching, queues, backpressure, idempotency"),
-    ("docs/adr/0004-serving-stack.md", "Custom micro-batcher vs Triton decision"),
-    ("tests/integration/test_api.py", "API contract tests"),
-    ("tests/integration/test_alert_flow.py", "Event -> dedup -> persist -> notify"),
-    ("tests/integration/test_stream_to_event.py", "Fake RTSP -> event, end to end"),
-])
+add(
+    6,
+    [
+        ("configs/serving/inference.yaml", "Model alias, batch size, timeouts"),
+        ("configs/serving/ingest.yaml", "Camera sources, FPS sampling, reconnect policy"),
+        ("configs/serving/alerts.yaml", "Cooldowns, channels, rate limits"),
+        ("configs/env/dev.yaml", "Dev environment settings"),
+        ("configs/env/staging.yaml", "Staging environment settings"),
+        ("configs/env/prod.yaml", "Production environment settings"),
+        ("src/ppe/video/capture.py", "RTSP/file reader with reconnect and backoff"),
+        ("src/ppe/video/frame_sampler.py", "Frame skipping and timestamping"),
+        ("src/ppe/video/clip_writer.py", "Evidence clip and snapshot writer"),
+        ("src/ppe/privacy/retention.py", "Retention job: delete expired clips and rows"),
+        ("src/ppe/models/registry.py", "Load model by MLflow alias and version"),
+        ("src/ppe/models/triton_client.py", "Optional Triton Inference Server client"),
+        ("src/ppe/messaging/__init__.py", "Messaging package"),
+        ("src/ppe/messaging/streams.py", "Redis Streams producer/consumer helpers"),
+        ("src/ppe/messaging/schemas.py", "Message schemas shared by services"),
+        ("services/api/Dockerfile", "API image"),
+        ("services/api/app/__init__.py", "API package"),
+        ("services/api/app/main.py", "FastAPI app factory and middleware"),
+        ("services/api/app/deps.py", "Dependency injection"),
+        ("services/api/app/auth.py", "API-key / JWT auth"),
+        ("services/api/app/schemas.py", "Request/response models"),
+        ("services/api/app/db/__init__.py", "DB package"),
+        ("services/api/app/db/models.py", "SQLAlchemy models: cameras, zones, events, feedback"),
+        ("services/api/app/db/session.py", "Async session management"),
+        ("services/api/app/routers/__init__.py", "Routers package"),
+        ("services/api/app/routers/cameras.py", "Camera CRUD"),
+        ("services/api/app/routers/zones.py", "Zone CRUD"),
+        ("services/api/app/routers/events.py", "Violation events query and acknowledge"),
+        ("services/api/app/routers/feedback.py", "Reviewer verdicts (true/false alert)"),
+        ("services/api/app/routers/models.py", "Active model info"),
+        ("services/api/app/routers/health.py", "Liveness and readiness probes"),
+        ("services/api/alembic.ini", "Migration config"),
+        ("services/api/alembic/env.py", "Migration environment"),
+        ("services/api/alembic/versions/0001_init.py", "Initial schema"),
+        ("services/stream_worker/Dockerfile", "Stream worker image"),
+        ("services/stream_worker/main.py", "Per-camera process entry"),
+        ("services/stream_worker/pipeline.py", "decode -> infer -> track -> rules -> publish"),
+        ("services/inference/Dockerfile", "GPU inference image"),
+        ("services/inference/main.py", "Inference API (gRPC/HTTP)"),
+        ("services/inference/batcher.py", "Dynamic micro-batching across cameras"),
+        ("services/inference/schemas.py", "Inference request/response models"),
+        ("services/alert_worker/Dockerfile", "Alert worker image"),
+        ("services/alert_worker/worker.py", "Consume events, dedup, persist, notify"),
+        ("services/alert_worker/dedup.py", "Cooldown and duplicate suppression"),
+        ("services/alert_worker/notifiers/__init__.py", "Notifier package"),
+        ("services/alert_worker/notifiers/base.py", "Notifier interface"),
+        ("services/alert_worker/notifiers/slack.py", "Slack notifier"),
+        ("services/alert_worker/notifiers/webhook.py", "Generic webhook notifier"),
+        ("services/alert_worker/notifiers/email.py", "Email notifier"),
+        ("services/dashboard/Dockerfile", "Dashboard image"),
+        ("services/dashboard/package.json", "Next.js dependencies"),
+        ("services/dashboard/next.config.js", "Next.js config"),
+        ("services/dashboard/src/app/page.tsx", "Overview: live status and KPIs"),
+        ("services/dashboard/src/app/events/page.tsx", "Violation event list and detail"),
+        ("services/dashboard/src/app/cameras/page.tsx", "Camera and zone management"),
+        (
+            "services/dashboard/src/app/review/page.tsx",
+            "Human review queue (feeds active learning)",
+        ),
+        ("services/dashboard/src/lib/api.ts", "Typed API client"),
+        (
+            "docker/docker-compose.yml",
+            "Core stack: api, workers, inference, redis, postgres, minio",
+        ),
+        ("docker/docker-compose.dev.yml", "Dev overrides: hot reload, mounted code"),
+        ("docker/mediamtx.yml", "Local RTSP test server config"),
+        ("scripts/replay_video.py", "Loop a video file as a fake RTSP camera"),
+        ("scripts/seed_demo_data.py", "Seed cameras, zones and sample events"),
+        ("docs/theory/p6_serving_systems.md", "Batching, queues, backpressure, idempotency"),
+        ("docs/adr/0004-serving-stack.md", "Custom micro-batcher vs Triton decision"),
+        ("tests/integration/test_api.py", "API contract tests"),
+        ("tests/integration/test_alert_flow.py", "Event -> dedup -> persist -> notify"),
+        ("tests/integration/test_stream_to_event.py", "Fake RTSP -> event, end to end"),
+    ],
+)
 
 # --------------------------------------------------------------------------- #
 # PHASE 7 - ML testing and CI/CD
 # --------------------------------------------------------------------------- #
-add(7, [
-    ("configs/eval/gate.yaml", "Promotion thresholds a candidate model must pass"),
-    ("src/ppe/evaluation/gate.py", "Compare candidate vs champion against the gate"),
-    ("scripts/check_eval_gate.py", "CLI used by CI to pass or fail a candidate"),
-    ("scripts/promote_model.py", "Move MLflow alias: challenger -> champion"),
-    ("tests/model/test_golden_set.py", "Regression test on the frozen golden set"),
-    ("tests/model/test_behavioral.py", "Invariance and directional behavior tests"),
-    ("tests/model/test_slice_regression.py", "No critical slice may regress"),
-    ("tests/data/test_golden_integrity.py", "Golden set hash must not change"),
-    (".github/workflows/model-ci.yml", "Evaluates candidate models and enforces the gate"),
-    (".github/workflows/build-images.yml", "Build, scan and push images tagged by git SHA"),
-    (".github/workflows/cd-staging.yml", "Deploy to staging and run smoke + replay tests"),
-    (".github/workflows/security.yml", "pip-audit, trivy, secret scanning"),
-    (".github/dependabot.yml", "Automated dependency update PRs"),
-    ("docs/theory/p7_ml_testing_and_cicd.md", "Testing pyramid for ML, gates, CI vs CD vs CT"),
-])
+add(
+    7,
+    [
+        ("configs/eval/gate.yaml", "Promotion thresholds a candidate model must pass"),
+        ("src/ppe/evaluation/gate.py", "Compare candidate vs champion against the gate"),
+        ("scripts/check_eval_gate.py", "CLI used by CI to pass or fail a candidate"),
+        ("scripts/promote_model.py", "Move MLflow alias: challenger -> champion"),
+        ("tests/model/test_golden_set.py", "Regression test on the frozen golden set"),
+        ("tests/model/test_behavioral.py", "Invariance and directional behavior tests"),
+        ("tests/model/test_slice_regression.py", "No critical slice may regress"),
+        ("tests/data/test_golden_integrity.py", "Golden set hash must not change"),
+        (".github/workflows/model-ci.yml", "Evaluates candidate models and enforces the gate"),
+        (".github/workflows/build-images.yml", "Build, scan and push images tagged by git SHA"),
+        (".github/workflows/cd-staging.yml", "Deploy to staging and run smoke + replay tests"),
+        (".github/workflows/security.yml", "pip-audit, trivy, secret scanning"),
+        (".github/dependabot.yml", "Automated dependency update PRs"),
+        ("docs/theory/p7_ml_testing_and_cicd.md", "Testing pyramid for ML, gates, CI vs CD vs CT"),
+    ],
+)
 
 # --------------------------------------------------------------------------- #
 # PHASE 8 - Observability, monitoring, feedback loop
 # --------------------------------------------------------------------------- #
-add(8, [
-    ("monitoring/prometheus/prometheus.yml", "Scrape config"),
-    ("monitoring/prometheus/alert_rules.yml", "SLO and model-health alert rules"),
-    ("monitoring/alertmanager/alertmanager.yml", "Alert routing and severities"),
-    ("monitoring/grafana/provisioning/datasources/datasources.yml", "Prometheus and Loki datasources"),
-    ("monitoring/grafana/provisioning/dashboards/dashboards.yml", "Dashboard auto-loading"),
-    ("monitoring/grafana/dashboards/system_health.json", "Latency, throughput, GPU, queues"),
-    ("monitoring/grafana/dashboards/model_quality.json", "Confidence, detection rates, drift"),
-    ("monitoring/grafana/dashboards/business_kpis.json", "Violations, false-alert rate, acknowledgement"),
-    ("monitoring/loki/loki-config.yml", "Log storage"),
-    ("monitoring/promtail/promtail-config.yml", "Log shipping"),
-    ("monitoring/otel/otel-collector.yml", "OpenTelemetry collector for traces"),
-    ("docker/docker-compose.obs.yml", "Observability stack overlay"),
-    ("configs/monitoring/drift.yaml", "Drift metrics, windows and thresholds"),
-    ("configs/monitoring/sampling.yaml", "Active-learning sampling rules"),
-    ("src/ppe/observability/__init__.py", "Observability package"),
-    ("src/ppe/observability/metrics.py", "Prometheus metrics definitions"),
-    ("src/ppe/observability/tracing.py", "OpenTelemetry setup"),
-    ("src/ppe/observability/drift.py", "Input and prediction drift (Evidently)"),
-    ("src/ppe/active_learning/__init__.py", "Active learning package"),
-    ("src/ppe/active_learning/sampler.py", "Select low-confidence and disputed frames"),
-    ("src/ppe/active_learning/export_to_cvat.py", "Push selected frames to CVAT"),
-    ("src/ppe/active_learning/feedback_ingest.py", "Pull reviewer verdicts into the dataset"),
-    ("pipelines/__init__.py", "Pipelines package"),
-    ("pipelines/flows/data_refresh_flow.py", "Prefect flow: new labels -> new dataset version"),
-    ("pipelines/flows/retrain_flow.py", "Prefect flow: train -> evaluate -> gate -> register"),
-    ("pipelines/flows/evaluation_flow.py", "Scheduled re-evaluation on golden set"),
-    ("pipelines/flows/drift_check_flow.py", "Scheduled drift report and trigger"),
-    (".github/workflows/retrain.yml", "Manual/scheduled trigger of the CT pipeline"),
-    ("docs/runbooks/high_false_alert_rate.md", "What to do when reviewers reject many alerts"),
-    ("docs/runbooks/camera_offline.md", "What to do when a camera stops delivering frames"),
-    ("docs/runbooks/drift_detected.md", "What to do when drift fires"),
-    ("docs/theory/p8_monitoring_and_drift.md", "Drift vs degradation, delayed labels, SLOs"),
-    ("tests/unit/test_drift.py", "Drift metric tests"),
-    ("tests/unit/test_sampler.py", "Active-learning sampler tests"),
-])
+add(
+    8,
+    [
+        ("monitoring/prometheus/prometheus.yml", "Scrape config"),
+        ("monitoring/prometheus/alert_rules.yml", "SLO and model-health alert rules"),
+        ("monitoring/alertmanager/alertmanager.yml", "Alert routing and severities"),
+        (
+            "monitoring/grafana/provisioning/datasources/datasources.yml",
+            "Prometheus and Loki datasources",
+        ),
+        ("monitoring/grafana/provisioning/dashboards/dashboards.yml", "Dashboard auto-loading"),
+        ("monitoring/grafana/dashboards/system_health.json", "Latency, throughput, GPU, queues"),
+        ("monitoring/grafana/dashboards/model_quality.json", "Confidence, detection rates, drift"),
+        (
+            "monitoring/grafana/dashboards/business_kpis.json",
+            "Violations, false-alert rate, acknowledgement",
+        ),
+        ("monitoring/loki/loki-config.yml", "Log storage"),
+        ("monitoring/promtail/promtail-config.yml", "Log shipping"),
+        ("monitoring/otel/otel-collector.yml", "OpenTelemetry collector for traces"),
+        ("docker/docker-compose.obs.yml", "Observability stack overlay"),
+        ("configs/monitoring/drift.yaml", "Drift metrics, windows and thresholds"),
+        ("configs/monitoring/sampling.yaml", "Active-learning sampling rules"),
+        ("src/ppe/observability/__init__.py", "Observability package"),
+        ("src/ppe/observability/metrics.py", "Prometheus metrics definitions"),
+        ("src/ppe/observability/tracing.py", "OpenTelemetry setup"),
+        ("src/ppe/observability/drift.py", "Input and prediction drift (Evidently)"),
+        ("src/ppe/active_learning/__init__.py", "Active learning package"),
+        ("src/ppe/active_learning/sampler.py", "Select low-confidence and disputed frames"),
+        ("src/ppe/active_learning/export_to_cvat.py", "Push selected frames to CVAT"),
+        ("src/ppe/active_learning/feedback_ingest.py", "Pull reviewer verdicts into the dataset"),
+        ("pipelines/__init__.py", "Pipelines package"),
+        ("pipelines/flows/data_refresh_flow.py", "Prefect flow: new labels -> new dataset version"),
+        ("pipelines/flows/retrain_flow.py", "Prefect flow: train -> evaluate -> gate -> register"),
+        ("pipelines/flows/evaluation_flow.py", "Scheduled re-evaluation on golden set"),
+        ("pipelines/flows/drift_check_flow.py", "Scheduled drift report and trigger"),
+        (".github/workflows/retrain.yml", "Manual/scheduled trigger of the CT pipeline"),
+        ("docs/runbooks/high_false_alert_rate.md", "What to do when reviewers reject many alerts"),
+        ("docs/runbooks/camera_offline.md", "What to do when a camera stops delivering frames"),
+        ("docs/runbooks/drift_detected.md", "What to do when drift fires"),
+        ("docs/theory/p8_monitoring_and_drift.md", "Drift vs degradation, delayed labels, SLOs"),
+        ("tests/unit/test_drift.py", "Drift metric tests"),
+        ("tests/unit/test_sampler.py", "Active-learning sampler tests"),
+    ],
+)
 
 # --------------------------------------------------------------------------- #
 # PHASE 9 - Cloud, Kubernetes, safe rollout
 # --------------------------------------------------------------------------- #
-add(9, [
-    ("infra/terraform/main.tf", "Root module: network, cluster, registry, storage, DB"),
-    ("infra/terraform/variables.tf", "Inputs"),
-    ("infra/terraform/outputs.tf", "Outputs"),
-    ("infra/terraform/backend.tf", "Remote state"),
-    ("infra/terraform/modules/network/main.tf", "VPC/VNet and subnets"),
-    ("infra/terraform/modules/k8s_cluster/main.tf", "Managed Kubernetes with CPU and GPU node pools"),
-    ("infra/terraform/modules/registry/main.tf", "Container registry"),
-    ("infra/terraform/modules/storage/main.tf", "Object storage for clips, datasets, artifacts"),
-    ("infra/terraform/envs/staging.tfvars", "Staging values"),
-    ("infra/terraform/envs/prod.tfvars", "Production values"),
-    ("deploy/k8s/base/kustomization.yaml", "Base resource list"),
-    ("deploy/k8s/base/namespace.yaml", "Namespace"),
-    ("deploy/k8s/base/configmap.yaml", "Non-secret config"),
-    ("deploy/k8s/base/secrets.example.yaml", "Secret shape (real secrets via secret manager)"),
-    ("deploy/k8s/base/api.yaml", "API Deployment and Service"),
-    ("deploy/k8s/base/stream-worker.yaml", "Stream worker Deployment"),
-    ("deploy/k8s/base/inference.yaml", "GPU inference Deployment and Service"),
-    ("deploy/k8s/base/alert-worker.yaml", "Alert worker Deployment"),
-    ("deploy/k8s/base/dashboard.yaml", "Dashboard Deployment and Service"),
-    ("deploy/k8s/base/redis.yaml", "Redis (or managed service reference)"),
-    ("deploy/k8s/base/postgres.yaml", "Postgres (or managed service reference)"),
-    ("deploy/k8s/base/hpa.yaml", "Autoscaling on queue lag and GPU utilization"),
-    ("deploy/k8s/base/ingress.yaml", "Ingress and TLS"),
-    ("deploy/k8s/base/networkpolicy.yaml", "Default-deny network policies"),
-    ("deploy/k8s/overlays/staging/kustomization.yaml", "Staging patches"),
-    ("deploy/k8s/overlays/prod/kustomization.yaml", "Production patches"),
-    ("deploy/k8s/rollouts/canary-rollout.yaml", "Argo Rollouts canary with steps"),
-    ("deploy/k8s/rollouts/analysis-template.yaml", "Automated metric checks that promote or roll back"),
-    ("deploy/k8s/shadow/shadow-inference.yaml", "Shadow model receiving mirrored traffic"),
-    (".github/workflows/cd-prod.yml", "Approval-gated production deploy"),
-    ("scripts/smoke_test.sh", "Post-deploy health and flow check"),
-    ("scripts/rollback.sh", "One-command rollback"),
-    ("tests/load/locustfile.py", "Load test: p50/p95/p99 under camera count"),
-    ("docs/COST_MODEL.md", "Cost per 1,000 frames and per camera per month"),
-    ("docs/runbooks/model_rollback.md", "How and when to roll back a model"),
-    ("docs/adr/0005-rollout-strategy.md", "Shadow, canary and rollback decision"),
-    ("docs/theory/p9_rollout_and_cloud.md", "Shadow vs canary vs blue-green, K8s basics, cost control"),
-])
+add(
+    9,
+    [
+        ("infra/terraform/main.tf", "Root module: network, cluster, registry, storage, DB"),
+        ("infra/terraform/variables.tf", "Inputs"),
+        ("infra/terraform/outputs.tf", "Outputs"),
+        ("infra/terraform/backend.tf", "Remote state"),
+        ("infra/terraform/modules/network/main.tf", "VPC/VNet and subnets"),
+        (
+            "infra/terraform/modules/k8s_cluster/main.tf",
+            "Managed Kubernetes with CPU and GPU node pools",
+        ),
+        ("infra/terraform/modules/registry/main.tf", "Container registry"),
+        (
+            "infra/terraform/modules/storage/main.tf",
+            "Object storage for clips, datasets, artifacts",
+        ),
+        ("infra/terraform/envs/staging.tfvars", "Staging values"),
+        ("infra/terraform/envs/prod.tfvars", "Production values"),
+        ("deploy/k8s/base/kustomization.yaml", "Base resource list"),
+        ("deploy/k8s/base/namespace.yaml", "Namespace"),
+        ("deploy/k8s/base/configmap.yaml", "Non-secret config"),
+        ("deploy/k8s/base/secrets.example.yaml", "Secret shape (real secrets via secret manager)"),
+        ("deploy/k8s/base/api.yaml", "API Deployment and Service"),
+        ("deploy/k8s/base/stream-worker.yaml", "Stream worker Deployment"),
+        ("deploy/k8s/base/inference.yaml", "GPU inference Deployment and Service"),
+        ("deploy/k8s/base/alert-worker.yaml", "Alert worker Deployment"),
+        ("deploy/k8s/base/dashboard.yaml", "Dashboard Deployment and Service"),
+        ("deploy/k8s/base/redis.yaml", "Redis (or managed service reference)"),
+        ("deploy/k8s/base/postgres.yaml", "Postgres (or managed service reference)"),
+        ("deploy/k8s/base/hpa.yaml", "Autoscaling on queue lag and GPU utilization"),
+        ("deploy/k8s/base/ingress.yaml", "Ingress and TLS"),
+        ("deploy/k8s/base/networkpolicy.yaml", "Default-deny network policies"),
+        ("deploy/k8s/overlays/staging/kustomization.yaml", "Staging patches"),
+        ("deploy/k8s/overlays/prod/kustomization.yaml", "Production patches"),
+        ("deploy/k8s/rollouts/canary-rollout.yaml", "Argo Rollouts canary with steps"),
+        (
+            "deploy/k8s/rollouts/analysis-template.yaml",
+            "Automated metric checks that promote or roll back",
+        ),
+        ("deploy/k8s/shadow/shadow-inference.yaml", "Shadow model receiving mirrored traffic"),
+        (".github/workflows/cd-prod.yml", "Approval-gated production deploy"),
+        ("scripts/smoke_test.sh", "Post-deploy health and flow check"),
+        ("scripts/rollback.sh", "One-command rollback"),
+        ("tests/load/locustfile.py", "Load test: p50/p95/p99 under camera count"),
+        ("docs/COST_MODEL.md", "Cost per 1,000 frames and per camera per month"),
+        ("docs/runbooks/model_rollback.md", "How and when to roll back a model"),
+        ("docs/adr/0005-rollout-strategy.md", "Shadow, canary and rollback decision"),
+        (
+            "docs/theory/p9_rollout_and_cloud.md",
+            "Shadow vs canary vs blue-green, K8s basics, cost control",
+        ),
+    ],
+)
 
 # --------------------------------------------------------------------------- #
 # PHASE 10 - Launch
 # --------------------------------------------------------------------------- #
-add(10, [
-    ("demo/app.py", "Public demo (Gradio) for Hugging Face Spaces"),
-    ("demo/requirements.txt", "Demo dependencies"),
-    ("demo/README.md", "Space metadata and usage"),
-    ("docs/RESULTS.md", "Final results, ablations, benchmarks, honest limitations"),
-    ("docs/INTERVIEW_PREP.md", "Why this model, leakage, what broke, scale 100x"),
-    ("docs/BLOG_POST.md", "Write-up: architecture, decisions, trade-offs"),
-    ("docs/assets/architecture.png", "Exported architecture diagram"),
-    ("docs/assets/demo.gif", "Short demo recording"),
-])
+add(
+    10,
+    [
+        ("demo/app.py", "Public demo (Gradio) for Hugging Face Spaces"),
+        ("demo/requirements.txt", "Demo dependencies"),
+        ("demo/README.md", "Space metadata and usage"),
+        ("docs/RESULTS.md", "Final results, ablations, benchmarks, honest limitations"),
+        ("docs/INTERVIEW_PREP.md", "Why this model, leakage, what broke, scale 100x"),
+        ("docs/BLOG_POST.md", "Write-up: architecture, decisions, trade-offs"),
+        ("docs/assets/architecture.png", "Exported architecture diagram"),
+        ("docs/assets/demo.gif", "Short demo recording"),
+    ],
+)
 
 
 # --------------------------------------------------------------------------- #
@@ -534,8 +613,11 @@ def phase_entries(phase: int) -> list[tuple[str, int, str]]:
 def render_phase(phase: int) -> str:
     entries = phase_entries(phase)
     files = [e for e in entries if not e[0].endswith("/")]
-    out = [f"PHASE {phase}: {PHASE_NAMES[phase]}",
-           f"{len(files)} files, {len(folders_first_created_in(phase))} new folders", ""]
+    out = [
+        f"PHASE {phase}: {PHASE_NAMES[phase]}",
+        f"{len(files)} files, {len(folders_first_created_in(phase))} new folders",
+        "",
+    ]
     out.append("New folders:")
     out += [f"  {d}" for d in folders_first_created_in(phase)] or ["  (none)"]
     out.append("")
@@ -556,16 +638,27 @@ def _stub(path: str, phase: int, why: str) -> str | None:
         return ""
     note = f"{why} (Phase {phase} stub)"
     if suffix == ".py":
-        return f'"""{why}.\n\nPhase {phase} stub: created by scripts/repo_manifest.py scaffold.\n"""\n'
+        return (
+            f'"""{why}.\n\nPhase {phase} stub: created by scripts/repo_manifest.py scaffold.\n"""\n'
+        )
     if suffix == ".md":
         title = p.stem.replace("_", " ").replace("-", " ")
         return f"# {title}\n\n> Phase {phase}: {why}\n\n_TODO: fill in during Phase {phase}._\n"
     if suffix == ".json":
         return "{}\n"
     if suffix == ".ipynb":
-        nb = {"cells": [{"cell_type": "markdown", "metadata": {},
-                         "source": [f"# {p.stem}\n", f"Phase {phase}: {why}"]}],
-              "metadata": {}, "nbformat": 4, "nbformat_minor": 5}
+        nb = {
+            "cells": [
+                {
+                    "cell_type": "markdown",
+                    "metadata": {},
+                    "source": [f"# {p.stem}\n", f"Phase {phase}: {why}"],
+                }
+            ],
+            "metadata": {},
+            "nbformat": 4,
+            "nbformat_minor": 5,
+        }
         return json.dumps(nb, indent=1) + "\n"
     if suffix in {".ts", ".tsx", ".js"}:
         return f"// {note}\n"
@@ -603,8 +696,10 @@ def scaffold(phase: int, root: Path, dry_run: bool) -> None:
 
 def write_docs(root: Path) -> None:
     files_total = sum(1 for p, _, _ in MANIFEST if not p.endswith("/"))
-    header = ("<!-- GENERATED by scripts/repo_manifest.py. "
-              "Edit the MANIFEST there, then run: python scripts/repo_manifest.py docs -->\n\n")
+    header = (
+        "<!-- GENERATED by scripts/repo_manifest.py. "
+        "Edit the MANIFEST there, then run: python scripts/repo_manifest.py docs -->\n\n"
+    )
 
     tree_md = (
         header + "# Folder structure\n\n"
@@ -630,12 +725,14 @@ def write_docs(root: Path) -> None:
     )
     (root / "docs" / "FOLDER_STRUCTURE.md").write_text(tree_md, encoding="utf-8")
 
-    parts = [header + "# Phase manifest\n\n"
-             "The complete list of files and folders created in each phase. "
-             "At the start of a phase we read its section here, scaffold the stubs, "
-             "commit them, and only then start filling files in one at a time.\n\n"
-             "```bash\npython scripts/repo_manifest.py phase N      # read\n"
-             "python scripts/repo_manifest.py scaffold N   # create stubs\n```\n"]
+    parts = [
+        header + "# Phase manifest\n\n"
+        "The complete list of files and folders created in each phase. "
+        "At the start of a phase we read its section here, scaffold the stubs, "
+        "commit them, and only then start filling files in one at a time.\n\n"
+        "```bash\npython scripts/repo_manifest.py phase N      # read\n"
+        "python scripts/repo_manifest.py scaffold N   # create stubs\n```\n"
+    ]
     parts.append("| Phase | Name | New files | New folders |\n|---|---|---|---|")
     for n, name in PHASE_NAMES.items():
         nf = sum(1 for p, ph, _ in MANIFEST if ph == n and not p.endswith("/"))
@@ -656,7 +753,9 @@ def write_docs(root: Path) -> None:
 
 def main() -> int:
     _check_unique()
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("tree")
     p_phase = sub.add_parser("phase")
